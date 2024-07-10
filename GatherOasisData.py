@@ -161,7 +161,7 @@ class GatherOASISData:
                         #convert GMT to PST
                         interval_start_pacific = self.convert_GMT_PST(interval_start)
 #                         interval_end_pacific = self.convert_GMT_PST(interval_end)
-                        
+                        print(f"Original UTC time: {interval_start} => Converted PST time: {interval_start_pacific}")
 
                         #store in list
                         extracted_data.append({
@@ -179,7 +179,7 @@ class GatherOASISData:
         df = pd.DataFrame(extracted_data)
         
         #convert data types
-        df['TIME'] = pd.to_datetime(df['TIME'])
+        # df['TIME'] = pd.to_datetime(df['TIME'])
 #         df['INTERVAL_END_PST'] = pd.to_datetime(df['INTERVAL_END_PST'])
         df = df.set_index('TIME')
         df.sort_index(inplace=True)
@@ -200,7 +200,7 @@ class GatherOASISData:
         #convert
         pacific_time = gmt_time.replace(tzinfo=pytz.utc).astimezone(pacific)
         
-        return pacific_time.strftime("%Y-%m-%d %H:%M")
+        return pacific_time
     
     
     def process_data(self):

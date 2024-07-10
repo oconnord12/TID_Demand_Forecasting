@@ -78,7 +78,7 @@ class GatherWeatherConditons():
         utc = pytz.utc
         pst = pytz.timezone('America/Los_Angeles')
         df.index = df.index.tz_localize(utc).tz_convert(pst)
-        df.index = df.index.tz_localize(None)
+        # df.index = df.index.tz_localize(None)
         return df
     
     def fetch_and_process_data(self):
